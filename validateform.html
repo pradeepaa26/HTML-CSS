@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> REGISTRATION FORM</title>
+<script type="text/javascript">
+	function showtable(){
+			console.log("show table method is called");
+			 var table = document.getElementById("showtable");
+
+            
+			  var row = table.insertRow(0);
+			  var cell1 = row.insertCell(0);
+			  var cell2 = row.insertCell(1);
+			  cell1.innerHTML = "Phonenumber";
+			  cell2.innerHTML = document.getElementById("phoneno").value;
+			  
+			  var row = table.insertRow(0);
+			  var cell1 = row.insertCell(0);
+			  var cell2 = row.insertCell(1);
+			  cell1.innerHTML = "Email";
+			  cell2.innerHTML = document.getElementById("email").value;
+ 
+                          var ele = document.getElementsByName('gender'); 
+                                 for(i = 0; i < ele.length; i++) { 
+                                    if(ele[i].checked) 
+                                         {
+                                          var row = table.insertRow(0);
+			                   var cell1 = row.insertCell(0);
+			                  var cell2 = row.insertCell(1);
+			                    cell1.innerHTML = "Gender";
+			                  cell2.innerHTML = ele[i].value;
+                                         }
+                                      }
+
+			  var row = table.insertRow(0);
+			  var cell1 = row.insertCell(0);
+			  var cell2 = row.insertCell(1);
+			  cell1.innerHTML = "Username";
+			  cell2.innerHTML = document.getElementById("fname").value;
+							}
+function print()
+{
+document.getElementById("formid").style.display = "none";
+document.getElementById("showtable").style.display="block";
+showtable();
+}
+function fcheck(){    
+    x=document.getElementById("fname").value;
+    document.getElementById("validatefname").style.display= isNaN(x)?"none" :"inline";
+    this.flag=isNaN(x)? true : false;
+}
+function checkNum(){
+    x=document.getElementById("phoneno").value;
+    document.getElementById("validatemob").style.display= isNaN(x)?"inline":"none";
+    this.flag=isNaN(x)?false:true;
+ 
+ }
+
+ function show() { 
+     var temp = document.getElementById("password1"); 
+var temp1 = document.getElementById("password2");
+     if (temp.type === "password" && temp1.type==="password") { 
+         temp.type = "text"; 
+         temp1.type="text";
+     } 
+     else { 
+         temp.type = "password"; 
+         temp1.type = "password"
+     } 
+ } 
+
+
+
+    function checkForm()
+  {
+var form=document.getElementById("formid");
+    if(form.pwd1.value != "" && form.pwd1.value == form.pwd2.value) {
+      if(form.pwd1.value.length < 6) {
+        alert("Error: Password must contain at least six characters!");
+return false;
+      }
+      re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+      if(!re.test(form.pwd1.value)) {
+        alert("Error: password must contain at least one number,one special charac,one alphabet!");
+return false;
+      }
+    } else {
+      alert("Error: Please check that you've entered valid password!");
+return false;
+    }
+print();
+  }
+</script>
+<style>
+fieldset{
+border:#E6E6FA;
+}
+body
+{
+background-repeat: no-repeat, repeat;
+ background-attachment: fixed;
+  background-size: 100% 100%;
+font-size: 125%;
+font-weight: bold;
+
+}
+marquee{
+      font-size: 30px;
+      font-weight: 800;
+      }
+.right{
+margin-left:600px;
+}
+</style>
+</head>
+<body bgcolor="#E6E6FA" background="C:\Users\Training\Desktop\pradee\html\task1\html,css\images.jpg">
+<form id="formid">
+<marquee>Welcome!Please Register first</marquee>
+<fieldset>
+<div class="right">
+<table align="center" cellspacing="1" cellpadding="2">
+<tr>
+<td><label>Username</label></td>
+<td><input type="text" name="firstname" id="fname" placeholder="Username" onchange="fcheck()" required ></td>
+<td><p id='validatefname' style='color:red;margin-bottom: 10px;display:none'>Invalid</p></td>
+</tr>
+<tr>
+<td><label>Gender</label></td>
+<td><input type="radio" name="gender" value="male"  >Male
+<input type="radio" name="gender" value="female" >Female
+<input type="radio" name="gender" value="other" >other
+</td>
+<tr>
+<td><label>D.O.B</label></td>
+<td><input type="date" name="dob" ></td>
+</tr>
+<tr>
+<td><label>Courses</label>
+<td><input type="checkbox" name="course" value="php">Php 
+<input type="checkbox" name="course" value="java">Java 
+<input type="checkbox" name="course" value="python">Python
+</td>
+</tr>
+<tr>
+<td><label>Email</label></td>
+<td><input type="text" id="email" name="email" pattern="^[A-Za-z0-9._%+-]{4,15}}@[A-Za-z0-9.-]{5,10}\.[a-zA-Z]{3}$" ></td>
+</tr>
+<tr>
+<td><label>Mobilenumber</label></td>
+<td><input type="tel" id="phoneno" onchange="checkNum(this.value);" ></td>
+<td><p id='validatemob' style='color:red;margin-bottom: 10px;display:none'>Invalid</p></td>
+
+</tr>
+<tr>
+<td><label>Password</label></td>
+<td><input type="password" name="pwd1" id="password1" required></td>
+
+</tr>
+<tr>
+<td><label>ConfirmPassword</label></td>
+<td><input type="password" name="pwd2" id="password2" required></td>
+</tr>
+<tr>
+<td></td>
+<td><input type="checkbox" onclick="show()"><label>Show Password</label></td>
+</tr>
+</table>
+</div>
+</fieldset>
+<fieldset>
+<div class="right">
+<table align="center" cellspacing="3" cellpadding="3">
+<td><input type="reset" name="reset"></td>
+<td><input type="button" value="submit" onClick="checkForm()"></td>
+</table>
+</div>
+</fieldset>
+</form>
+<div class="right">
+<table id="showtable" style="display:none">
+</table>
+</div>
+</body>
+</html>
